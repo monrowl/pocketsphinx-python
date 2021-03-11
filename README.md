@@ -1,12 +1,5 @@
 # Pocketsphinx Python
 
-[![Latest Version](https://img.shields.io/pypi/v/pocketsphinx.svg?maxAge=86400)](https://pypi.org/project/pocketsphinx)
-[![Development Status](https://img.shields.io/pypi/status/pocketsphinx.svg?maxAge=86400)](https://pypi.org/project/pocketsphinx)
-[![Supported Python Versions](https://img.shields.io/pypi/pyversions/pocketsphinx.svg?maxAge=86400)](https://pypi.org/project/pocketsphinx)
-[![Travis Build Status](https://travis-ci.org/bambocher/pocketsphinx-python.svg?branch=master)](https://travis-ci.org/bambocher/pocketsphinx-python)
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/v2rvnt181dox00jr/branch/master?svg=true)](https://ci.appveyor.com/project/bambocher/pocketsphinx-python/branch/master)
-[![License](https://img.shields.io/pypi/l/pocketsphinx.svg?maxAge=86400)](https://pypi.org/project/pocketsphinx)
-
 Pocketsphinx is a part of the [CMU Sphinx](http://cmusphinx.sourceforge.net) Open Source Toolkit For Speech Recognition.
 
 This package provides a python interface to CMU [Sphinxbase](https://github.com/cmusphinx/sphinxbase) and [Pocketsphinx](https://github.com/cmusphinx/pocketsphinx) libraries created with [SWIG](http://www.swig.org) and [Setuptools](https://setuptools.readthedocs.io).
@@ -19,19 +12,18 @@ This package provides a python interface to CMU [Sphinxbase](https://github.com/
 
 ## Installation
 
-```shell
-# Make sure we have up-to-date versions of pip, setuptools and wheel
-python -m pip install --upgrade pip setuptools wheel
-pip install --upgrade pocketsphinx
 ```
-
-More binary distributions for manual installation are available [here](https://pypi.org/project/pocketsphinx/#files).
+git clone --recursive https://github.com/cmusphinx/pocketsphinx-python/
+cd pocketsphinx-python
+python setup.py install
+```
 
 ## Usage
 
 ### LiveSpeech
 
-It's an iterator class for continuous recognition or keyword search from a microphone.
+An iterator class for continuous recognition or keyword search from a microphone.
+Note that this is not supported (yet) in macOS Big Sur.
 
 ```python
 from pocketsphinx import LiveSpeech
@@ -73,7 +65,7 @@ for phrase in speech:
 
 ### AudioFile
 
-It's an iterator class for continuous recognition or keyword search from a file.
+An iterator class for continuous recognition or keyword search from a file.
 
 ```python
 from pocketsphinx import AudioFile
@@ -310,7 +302,9 @@ Mac OS X requirements:
 brew reinstall swig python
 ```
 
-### Install with pip
+### Install UPSTREAM version with pip
+
+Note that this is NOT the same as this version under github cmusphinx.
 
 ```shell
 pip install https://github.com/bambocher/pocketsphinx-python/archive/master.zip
@@ -319,7 +313,7 @@ pip install https://github.com/bambocher/pocketsphinx-python/archive/master.zip
 ### Install with distutils
 
 ```shell
-git clone --recursive https://github.com/bambocher/pocketsphinx-python
+git clone --recursive https://github.com/cmusphinx/pocketsphinx-python
 cd pocketsphinx-python
 python setup.py install
 ```
