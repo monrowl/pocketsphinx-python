@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import os
 import sys
+import platform
 from shutil import copy, copytree, ignore_patterns
 from glob import glob
 
@@ -233,13 +234,17 @@ if sys.platform.startswith('win'):
     )
 elif sys.platform.startswith('darwin'):
     sb_include_dirs.append('/System/Library/Frameworks/OpenAL.framework/Versions/A/Headers')
+    if platform.release() < '20':
+        openal = '/System/Library/Frameworks/OpenAL.framework/Versions/A/OpenAL'
+    else:
+        openal = '/System/Library/Frameworks/OpenAL.framework/Versions/A/Resources/BridgeSupport/OpenAL.bridgesupport'
     ext_modules.append(
         Extension(
             name='sphinxbase._ad_openal',
             sources=['swig/sphinxbase/ad_openal.i', 'deps/sphinxbase/src/libsphinxad/ad_openal.c'],
             swig_opts=sb_swig_opts,
             include_dirs=sb_include_dirs,
-            extra_objects=['/System/Library/Frameworks/OpenAL.framework/Versions/A/OpenAL'],
+            extra_objects=[openal],
             define_macros=define_macros,
             extra_compile_args=extra_compile_args,
             extra_link_args=extra_link_args
