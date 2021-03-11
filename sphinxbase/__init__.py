@@ -30,11 +30,13 @@
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 import sys
+import platform
 
 if sys.platform.startswith('win'):
     from .ad_win32 import *
 elif sys.platform.startswith('darwin'):
-    from .ad_openal import *
+    if platform.release() < '20':  # OpenAL not supported in Big Sur
+        from .ad_openal import *
 elif sys.platform.startswith('linux'):
     try:
         from .ad_pulse import *
